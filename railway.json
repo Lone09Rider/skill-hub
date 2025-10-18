@@ -1,0 +1,10 @@
+{
+  "deploy": {
+    "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn skillswap.wsgi:application --bind 0.0.0.0:$PORT",
+    "healthcheckPath": "/",
+    "healthcheckTimeout": 300
+  },
+  "build": {
+    "builder": "NIXPACKS"
+  }
+}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="flex items-center justify-center min-h-screen bg-gray-50">
+  <div class="w-full max-w-md p-8 bg-white rounded shadow-md">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Welcome to SkillHub ⚡</h1>
+    {% if show_login %}
+      <h2 class="text-xl font-semibold text-gray-700 mb-4">Log In</h2>
+      <form method="post" class="space-y-4">
+        {% csrf_token %}
+        <input type="hidden" name="login" value="1">
+        {% for field in login_form %}
+          <div>
+            <label class="block mb-1 font-medium text-gray-700">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}<p class="text-xs text-gray-500">{{ field.help_text }}</p>{% endif %}
+            {% for error in field.errors %}<p class="text-xs text-red-500">{{ error }}</p>{% endfor %}
+          </div>
+        {% endfor %}
+        {% if login_errors %}
+          <div class="text-red-600 text-sm">{{ login_errors }}</div>
+        {% endif %}
+        <button type="submit" class="w-full py-2 font-semibold text-white bg-blue-600 rounded hover:bg-blue-700">Log In</button>
+      </form>
+      <form method="post" class="mt-4 text-center">
+        {% csrf_token %}
+        <button type="submit" name="signup_redirect" class="text-blue-600 hover:underline">Don't have an account? Sign Up</button>
+      </form>
+    {% else %}
+      <form method="post" class="flex flex-col gap-4">
+        {% csrf_token %}
+        <button type="submit" name="show_login" class="w-full py-2 font-semibold text-white bg-blue-600 rounded hover:bg-blue-700">Log In</button>
+        <button type="submit" name="signup_redirect" class="w-full py-2 font-semibold text-white bg-green-600 rounded hover:bg-green-700">Sign Up</button>
+      </form>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
