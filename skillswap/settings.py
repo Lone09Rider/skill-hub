@@ -59,12 +59,8 @@ ASGI_APPLICATION = 'skillswap.asgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('MYSQL_DATABASE', default='skillswap'),
-        'USER': env('MYSQL_USER', default='skillswap'),
-        'PASSWORD': env('MYSQL_PASSWORD', default=''),
-        'HOST': env('MYSQL_HOST', default='localhost'),
-        'PORT': env('MYSQL_PORT', default='3306'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

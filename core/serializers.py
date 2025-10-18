@@ -12,13 +12,34 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
+    # Include user fields for reading and writing
+    username = serializers.CharField(source='user.username')
+    email = serializers.EmailField(source='user.email')
+    first_name = serializers.CharField(source='user.first_name', required=False, allow_blank=True)
+    last_name = serializers.CharField(source='user.last_name', required=False, allow_blank=True)
     
     class Meta:
         model = UserProfile
-        fields = ('user', 'bio', 'location', 'phone', 'date_of_birth', 
-                 'profile_picture', 'is_mentor', 'rating', 'created_at', 'updated_at')
+        fields = ('username', 'email', 'first_name', 'last_name', 'bio', 'location', 
+                 'phone', 'date_of_birth', 'profile_picture', 'is_mentor', 'rating', 
+                 'created_at', 'updated_at')
         read_only_fields = ('rating', 'created_at', 'updated_at')
+    
+    def update(self, instance, validated_data):
+        # Extract user data
+        user_data = {}
+        if 'user' in validated_data:
+            user_data = validated_data.pop('user')
+        
+        # Update user fields if provided
+        user = instance.user
+        for attr, value in user_data.items():
+            setattr(user, attr, value)
+        if user_data:
+            user.save()
+        
+        # Update profile fields
+        return super().update(instance, validated_data)
 
 
 class SignUpSerializer(serializers.ModelSerializer):

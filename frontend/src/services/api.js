@@ -87,7 +87,7 @@ export const profileAPI = {
     api.get('/profile/'),
   
   updateProfile: (profileData) => 
-    api.put('/profile/update/', profileData),
+    api.put('/profile/', profileData),
 };
 
 export const skillsAPI = {
