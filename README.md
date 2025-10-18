@@ -13,12 +13,6 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-2. Copy `.env.example` to `.env` and update values.
-
-```powershell
-copy .env.example .env
-# edit .env to set SECRET_KEY and DB settings
-```
 
 3. Run migrations and start the dev server
 
