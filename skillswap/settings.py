@@ -9,7 +9,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = env('DJANGO_SECRET_KEY', default='BholeKaBhakt')
 DEBUG = env('DJANGO_DEBUG')
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['localhost'])
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['*'])
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -106,7 +106,8 @@ CORS_ALLOWED_ORIGINS = [
     # Production deployments
     "https://skill-hub-learn.netlify.app",  # Netlify frontend (old)
     "https://swap-skills-io.netlify.app",   # Netlify frontend (new)
-    "https://skill-hub-ofsi.onrender.com",  # Render backend (updated)
+    "https://skill-hub-ofsi.onrender.com",  # Render backend (old)
+    "https://skill-hub-2.onrender.com",     # Render backend (new)
 ]
 CORS_ALLOW_CREDENTIALS = True
 
@@ -114,6 +115,7 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "https://swap-skills-io.netlify.app",
     "https://skill-hub-ofsi.onrender.com",
+    "https://skill-hub-2.onrender.com",
 ]
 
 # Login/Logout redirect URLs

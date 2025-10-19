@@ -103,6 +103,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "https://swap-skills-io.netlify.app",
+    "https://skill-hub-2.onrender.com",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -110,6 +111,7 @@ CORS_ALLOW_CREDENTIALS = True
 # CSRF Settings (although CSRF middleware is disabled)
 CSRF_TRUSTED_ORIGINS = [
     "https://swap-skills-io.netlify.app",
+    "https://skill-hub-2.onrender.com",
 ]
 
 # Internationalization
