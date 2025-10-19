@@ -52,6 +52,7 @@ def signup(request):
 
 class CustomLoginView(LoginView):
     template_name = "core/login.html"
+    success_url = '/'  # Redirect to home after successful login
 
 class CustomLogoutView(LogoutView):
     next_page = "/"
