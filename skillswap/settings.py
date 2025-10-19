@@ -113,7 +113,6 @@ CORS_ALLOW_CREDENTIALS = True
 # CSRF Configuration for production
 CSRF_TRUSTED_ORIGINS = [
     "https://swap-skills-io.netlify.app",
-    "https://skill-hub-learn.netlify.app",
     "https://skill-hub-ofsi.onrender.com",
 ]
 
