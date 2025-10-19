@@ -1,5 +1,5 @@
 // Backend API integration for SkillSwap
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 // Get token from localStorage (matching the auth context)
 const getToken = () => localStorage.getItem('accessToken');
@@ -45,13 +45,13 @@ const skillsApi = {
     if (filters.proficiency) queryParams.append('proficiency', filters.proficiency);
     if (filters.search) queryParams.append('search', filters.search);
     
-    const endpoint = `/api/skills/${queryParams.toString() ? '?' + queryParams.toString() : ''}`;
+    const endpoint = `/skills/${queryParams.toString() ? '?' + queryParams.toString() : ''}`;
     return await apiRequest(endpoint);
   },
 
   // Create a new skill
   createSkill: async (skillData) => {
-    return await apiRequest('/api/skills/', {
+    return await apiRequest('/skills/', {
       method: 'POST',
       body: JSON.stringify(skillData)
     });
@@ -59,12 +59,12 @@ const skillsApi = {
 
   // Get current user's skills
   getMySkills: async () => {
-    return await apiRequest('/api/my-skills/');
+    return await apiRequest('/my-skills/');
   },
 
   // Update a skill
   updateSkill: async (skillId, skillData) => {
-    return await apiRequest(`/api/skills/${skillId}/`, {
+    return await apiRequest(`/skills/${skillId}/`, {
       method: 'PUT',
       body: JSON.stringify(skillData)
     });
@@ -72,14 +72,14 @@ const skillsApi = {
 
   // Delete a skill
   deleteSkill: async (skillId) => {
-    return await apiRequest(`/api/skills/${skillId}/`, {
+    return await apiRequest(`/skills/${skillId}/`, {
       method: 'DELETE'
     });
   },
 
   // Apply to a skill
   applyToSkill: async (applicationData) => {
-    return await apiRequest('/api/apply/', {
+    return await apiRequest('/apply/', {
       method: 'POST',
       body: JSON.stringify(applicationData)
     });
@@ -87,12 +87,12 @@ const skillsApi = {
 
   // Get user applications (sent and received)
   getMyApplications: async () => {
-    return await apiRequest('/api/my-applications/');
+    return await apiRequest('/my-applications/');
   },
 
   // Update application status
   updateApplicationStatus: async (applicationId, status) => {
-    return await apiRequest(`/api/applications/${applicationId}/status/`, {
+    return await apiRequest(`/applications/${applicationId}/status/`, {
       method: 'PUT',
       body: JSON.stringify({ status })
     });
