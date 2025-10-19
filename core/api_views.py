@@ -33,6 +33,7 @@ def signup_api(request):
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
+@csrf_exempt
 def login_api(request):
     """API endpoint for user login"""
     serializer = LoginSerializer(data=request.data)
