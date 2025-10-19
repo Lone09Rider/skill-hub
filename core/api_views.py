@@ -5,6 +5,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_exempt
 from .serializers import (
     UserSerializer, UserProfileSerializer, SignUpSerializer, 
     LoginSerializer, SkillSerializer, SkillApplicationSerializer
@@ -14,6 +15,7 @@ from .models import UserProfile, Skill, SkillApplication
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
+@csrf_exempt
 def signup_api(request):
     """API endpoint for user registration"""
     serializer = SignUpSerializer(data=request.data)
