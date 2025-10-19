@@ -20,7 +20,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'channels',
     'corsheaders',
     'core',
 ]
@@ -55,7 +54,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'skillswap.wsgi.application'
-ASGI_APPLICATION = 'skillswap.asgi.application'
 
 DATABASES = {
     'default': {
@@ -75,17 +73,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Channels
-REDIS_URL = env('REDIS_URL', default='redis://localhost:6379/0')
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            'hosts': [REDIS_URL],
-        },
-    },
-}
 
 # Django REST Framework
 REST_FRAMEWORK = {
@@ -115,6 +102,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:5173",  # Vite dev server
     "http://127.0.0.1:5173",
+    # Production deployments
+    "https://skill-hub-learn.netlify.app",  # Netlify frontend
+    "https://skill-hub-1.onrender.com",     # Render backend
 ]
 CORS_ALLOW_CREDENTIALS = True
 

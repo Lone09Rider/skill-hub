@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 const Header = ({ currentPage = '' }) => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -22,35 +23,36 @@ const Header = ({ currentPage = '' }) => {
   const handleNavigation = (path) => {
     console.log('Navigating to:', path);
     navigate(path);
+    setIsMobileMenuOpen(false); // Close mobile menu on navigation
   };
 
   return (
-    <header className="bg-gradient-to-r from-gray-900/90 via-purple-900/90 to-gray-900/90 backdrop-blur-lg border-b border-cyan-400/30 shadow-2xl shadow-cyan-500/20 relative z-10 flex-shrink-0">
+    <header className="bg-gradient-to-r from-gray-900/90 via-purple-900/90 to-gray-900/90 backdrop-blur-lg border-b border-cyan-400/30 shadow-2xl shadow-cyan-500/20 relative z-50 flex-shrink-0">
       {/* Animated background gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-purple-500/10 to-pink-500/5 animate-pulse"></div>
       
       {/* Glowing border effect */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"></div>
       
-      <div className="w-full px-6 sm:px-8 lg:px-12 relative z-10">
-        <div className="flex justify-between items-center py-4">
-          {/* Left corner - Logo positioned at absolute left */}
+      <div className="w-full px-4 sm:px-6 lg:px-12 relative z-10">
+        <div className="flex justify-between items-center py-3 lg:py-4">
+          {/* Logo - Always visible */}
           <div className="flex items-center">
-            <button onClick={() => handleNavigation('/')} className="group flex-shrink-0 relative mr-16">
+            <button onClick={() => handleNavigation('/')} className="group flex-shrink-0 relative">
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-purple-400/20 rounded-xl blur-lg group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
-              <h1 className="relative text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 group-hover:from-cyan-200 group-hover:via-pink-300 group-hover:to-yellow-300 transition-all duration-700 transform group-hover:scale-110 drop-shadow-2xl">
+              <h1 className="relative text-lg sm:text-xl lg:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 group-hover:from-cyan-200 group-hover:via-pink-300 group-hover:to-yellow-300 transition-all duration-700 transform group-hover:scale-110 drop-shadow-2xl">
                 ⚡ SkillHub
               </h1>
               <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400/10 to-purple-400/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </button>
           </div>
 
-          {/* Center - Navigation buttons with corner-aligned design */}
-          <div className="flex-1 flex justify-center">
+          {/* Desktop Navigation - Hidden on mobile */}
+          <div className="hidden lg:flex flex-1 justify-center">
             <nav className="flex space-x-2">
               <button 
                 onClick={() => handleNavigation('/search')} 
-                className={`group relative px-6 py-3 font-bold text-sm tracking-wide uppercase transition-all duration-500 transform hover:scale-105 ${
+                className={`group relative px-4 lg:px-6 py-2 lg:py-3 font-bold text-xs lg:text-sm tracking-wide uppercase transition-all duration-500 transform hover:scale-105 ${
                   currentPage === 'search' 
                     ? 'text-white shadow-lg shadow-cyan-500/30' 
                     : 'text-cyan-200 hover:text-white'
@@ -67,7 +69,7 @@ const Header = ({ currentPage = '' }) => {
               
               <button 
                 onClick={() => handleNavigation('/dashboard')} 
-                className={`group relative px-6 py-3 font-bold text-sm tracking-wide uppercase transition-all duration-500 transform hover:scale-105 ${
+                className={`group relative px-4 lg:px-6 py-2 lg:py-3 font-bold text-xs lg:text-sm tracking-wide uppercase transition-all duration-500 transform hover:scale-105 ${
                   currentPage === 'dashboard' 
                     ? 'text-white shadow-lg shadow-purple-500/30' 
                     : 'text-cyan-200 hover:text-white'
@@ -84,7 +86,7 @@ const Header = ({ currentPage = '' }) => {
               
               <button 
                 onClick={() => handleNavigation('/profile')} 
-                className={`group relative px-6 py-3 font-bold text-sm tracking-wide uppercase transition-all duration-500 transform hover:scale-105 ${
+                className={`group relative px-4 lg:px-6 py-2 lg:py-3 font-bold text-xs lg:text-sm tracking-wide uppercase transition-all duration-500 transform hover:scale-105 ${
                   currentPage === 'profile' 
                     ? 'text-white shadow-lg shadow-pink-500/30' 
                     : 'text-cyan-200 hover:text-white'
@@ -101,8 +103,8 @@ const Header = ({ currentPage = '' }) => {
             </nav>
           </div>
           
-          {/* Right corner - User info and logout positioned at absolute right */}
-          <div className="flex items-center space-x-4 ml-16">
+          {/* Desktop User Info & Logout - Hidden on mobile */}
+          <div className="hidden lg:flex items-center space-x-4">
             {/* Welcome message with enhanced corner styling */}
             <div className="relative">
               <span className="text-sm font-semibold text-cyan-200 drop-shadow-lg tracking-wide">
@@ -114,10 +116,10 @@ const Header = ({ currentPage = '' }) => {
             {/* Corner-styled logout button */}
             <button 
               onClick={handleLogout}
-              className="relative group bg-gradient-to-br from-red-500 via-red-600 to-pink-600 hover:from-red-400 hover:via-red-500 hover:to-pink-500 text-white font-bold px-5 py-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-red-500/40 hover:shadow-red-500/60 border border-red-400/50 hover:border-red-300/80 transform hover:scale-110 hover:-translate-y-1"
+              className="relative group bg-gradient-to-br from-red-500 via-red-600 to-pink-600 hover:from-red-400 hover:via-red-500 hover:to-pink-500 text-white font-bold px-4 lg:px-5 py-2 lg:py-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-red-500/40 hover:shadow-red-500/60 border border-red-400/50 hover:border-red-300/80 transform hover:scale-110 hover:-translate-y-1"
             >
-              <span className="relative z-20 flex items-center space-x-2 text-sm tracking-wide uppercase">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="relative z-20 flex items-center space-x-2 text-xs lg:text-sm tracking-wide uppercase">
+                <svg className="w-3 h-3 lg:w-4 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                 </svg>
                 <span>Logout</span>
@@ -126,6 +128,73 @@ const Header = ({ currentPage = '' }) => {
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-xl opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
             </button>
           </div>
+
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden flex items-center space-x-3">
+            {/* Mobile user indicator */}
+            <span className="text-xs text-cyan-200 truncate max-w-20">{user?.username}</span>
+            
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="relative group bg-gray-800/70 p-2 rounded-lg border border-cyan-400/30 transition-all duration-300"
+            >
+              <div className="w-5 h-5 flex flex-col justify-center items-center">
+                <div className={`bg-cyan-400 h-0.5 w-5 transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></div>
+                <div className={`bg-cyan-400 h-0.5 w-5 mt-1 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
+                <div className={`bg-cyan-400 h-0.5 w-5 mt-1 transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></div>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className={`lg:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+          <nav className="py-4 space-y-2">
+            <button 
+              onClick={() => handleNavigation('/search')} 
+              className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
+                currentPage === 'search' 
+                  ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-white border border-cyan-400/50' 
+                  : 'text-cyan-200 hover:bg-gray-800/50 hover:text-white'
+              }`}
+            >
+              Browse Skills
+            </button>
+            
+            <button 
+              onClick={() => handleNavigation('/dashboard')} 
+              className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
+                currentPage === 'dashboard' 
+                  ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-white border border-purple-400/50' 
+                  : 'text-cyan-200 hover:bg-gray-800/50 hover:text-white'
+              }`}
+            >
+              Dashboard
+            </button>
+            
+            <button 
+              onClick={() => handleNavigation('/profile')} 
+              className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
+                currentPage === 'profile' 
+                  ? 'bg-gradient-to-r from-pink-500/20 to-rose-500/20 text-white border border-pink-400/50' 
+                  : 'text-cyan-200 hover:bg-gray-800/50 hover:text-white'
+              }`}
+            >
+              Profile
+            </button>
+            
+            <button 
+              onClick={handleLogout}
+              className="w-full text-left px-4 py-3 rounded-lg bg-gradient-to-r from-red-500/20 to-pink-500/20 text-red-200 hover:text-white transition-all duration-300 border border-red-400/30 hover:border-red-400/60"
+            >
+              <span className="flex items-center space-x-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span>Logout</span>
+              </span>
+            </button>
+          </nav>
         </div>
       </div>
       

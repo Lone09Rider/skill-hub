@@ -169,10 +169,10 @@ ${user?.username || 'A SkillHub user'}`;
   };
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-slate-800 via-purple-800 to-indigo-800 relative flex flex-col">
+    <div className="min-h-screen w-screen bg-gradient-to-br from-slate-800 via-purple-800 to-indigo-800 relative flex flex-col">
       {/* Tech grid background */}
       <div className="absolute inset-0 opacity-15">
-        <div className="grid grid-cols-12 h-full">
+        <div className="grid grid-cols-8 sm:grid-cols-12 lg:grid-cols-16 h-full">
           {Array.from({length: 144}).map((_, i) => (
             <div key={i} className="border border-cyan-400/25"></div>
           ))}
@@ -181,23 +181,24 @@ ${user?.username || 'A SkillHub user'}`;
       
       {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="animate-pulse absolute top-1/4 left-1/4 w-2 h-2 bg-cyan-400 rounded-full"></div>
-        <div className="animate-pulse absolute top-3/4 right-1/4 w-1 h-1 bg-purple-400 rounded-full" style={{animationDelay: '1s'}}></div>
-        <div className="animate-pulse absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-pink-400 rounded-full" style={{animationDelay: '2s'}}></div>
+        <div className="animate-pulse absolute top-1/4 left-1/4 w-1 h-1 sm:w-2 sm:h-2 bg-cyan-400 rounded-full"></div>
+        <div className="animate-pulse absolute top-3/4 right-1/4 w-0.5 h-0.5 sm:w-1 sm:h-1 bg-purple-400 rounded-full" style={{animationDelay: '1s'}}></div>
+        <div className="animate-pulse absolute bottom-1/4 left-1/3 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-pink-400 rounded-full" style={{animationDelay: '2s'}}></div>
       </div>
 
       <Header currentPage="search" />
 
       {/* Main Content */}
       <main className="flex-1 overflow-auto relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           {/* Search and Filters */}
-          <div className="bg-gray-800/70 backdrop-blur-sm border border-cyan-500/30 rounded-xl shadow-2xl shadow-cyan-500/20 p-6 mb-6 relative overflow-hidden">
+          <div className="bg-gray-800/70 backdrop-blur-sm border border-cyan-500/30 rounded-xl shadow-2xl shadow-cyan-500/20 p-4 sm:p-6 mb-4 sm:mb-6 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 rounded-xl"></div>
             <div className="relative z-10">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-300">
-                  Discover Skills & Find Your Perfect Learning Partner
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 sm:mb-6 gap-2 sm:gap-0">
+                <h2 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-300">
+                  <span className="hidden sm:inline">Discover Skills & Find Your Perfect Learning Partner</span>
+                  <span className="sm:hidden">Discover Skills</span>
                 </h2>
                 <button
                   onClick={refreshSkills}

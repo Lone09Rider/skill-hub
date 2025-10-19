@@ -226,10 +226,10 @@ const Profile = () => {
 
   if (loading) {
     return (
-      <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-slate-800 via-purple-800 to-indigo-800 relative flex flex-col">
+      <div className="min-h-screen w-screen bg-gradient-to-br from-slate-800 via-purple-800 to-indigo-800 relative flex flex-col">
         {/* Tech grid background pattern */}
         <div className="absolute inset-0 opacity-15">
-          <div className="grid grid-cols-12 h-full">
+          <div className="grid grid-cols-8 sm:grid-cols-12 lg:grid-cols-16 h-full">
             {Array.from({length: 144}).map((_, i) => (
               <div key={i} className="border border-cyan-400/25"></div>
             ))}
@@ -238,9 +238,9 @@ const Profile = () => {
         
         {/* Floating particles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="animate-pulse absolute top-1/4 left-1/4 w-2 h-2 bg-cyan-400 rounded-full"></div>
-          <div className="animate-pulse absolute top-3/4 right-1/4 w-1 h-1 bg-purple-400 rounded-full" style={{animationDelay: '1s'}}></div>
-          <div className="animate-pulse absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-pink-400 rounded-full" style={{animationDelay: '2s'}}></div>
+          <div className="animate-pulse absolute top-1/4 left-1/4 w-1 h-1 sm:w-2 sm:h-2 bg-cyan-400 rounded-full"></div>
+          <div className="animate-pulse absolute top-3/4 right-1/4 w-0.5 h-0.5 sm:w-1 sm:h-1 bg-purple-400 rounded-full" style={{animationDelay: '1s'}}></div>
+          <div className="animate-pulse absolute bottom-1/4 left-1/3 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-pink-400 rounded-full" style={{animationDelay: '2s'}}></div>
         </div>
 
         <Header currentPage="profile" />
@@ -248,8 +248,8 @@ const Profile = () => {
         {/* Loading content */}
         <div className="flex-1 flex justify-center items-center relative z-10">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-cyan-400 mx-auto shadow-lg shadow-cyan-400/50"></div>
-            <p className="mt-4 text-cyan-100">Loading profile...</p>
+            <div className="animate-spin rounded-full h-16 w-16 sm:h-24 sm:w-24 lg:h-32 lg:w-32 border-b-2 border-cyan-400 mx-auto shadow-lg shadow-cyan-400/50"></div>
+            <p className="mt-4 text-cyan-100 text-sm sm:text-base">Loading profile...</p>
           </div>
         </div>
       </div>
@@ -257,10 +257,10 @@ const Profile = () => {
   }
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-slate-800 via-purple-800 to-indigo-800 relative flex flex-col">
+    <div className="min-h-screen w-screen bg-gradient-to-br from-slate-800 via-purple-800 to-indigo-800 relative flex flex-col">
       {/* Tech grid background pattern */}
       <div className="absolute inset-0 opacity-15">
-        <div className="grid grid-cols-12 h-full">
+        <div className="grid grid-cols-8 sm:grid-cols-12 lg:grid-cols-16 h-full">
           {Array.from({length: 144}).map((_, i) => (
             <div key={i} className="border border-cyan-400/25"></div>
           ))}

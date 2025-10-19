@@ -69,10 +69,10 @@ const Signup = () => {
   };
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 relative flex">
+    <div className="min-h-screen w-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 relative flex">
       {/* Animated tech grid background pattern */}
       <div className="absolute inset-0 opacity-10">
-        <div className="grid grid-cols-20 h-full">
+        <div className="grid grid-cols-10 sm:grid-cols-15 lg:grid-cols-20 h-full">
           {Array.from({length: 400}).map((_, i) => (
             <div 
               key={i} 
@@ -91,7 +91,7 @@ const Signup = () => {
         {Array.from({length: 15}).map((_, i) => (
           <div
             key={i}
-            className={`absolute w-2 h-2 rounded-full animate-bounce ${
+            className={`absolute w-1 h-1 sm:w-2 sm:h-2 rounded-full animate-bounce ${
               i % 3 === 0 ? 'bg-cyan-400' : i % 3 === 1 ? 'bg-purple-400' : 'bg-pink-400'
             }`}
             style={{
@@ -106,122 +106,136 @@ const Signup = () => {
 
       {/* Animated gradient orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/2 right-1/3 w-48 h-48 bg-gradient-to-r from-pink-500/20 to-violet-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 sm:w-64 sm:h-64 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 right-1/3 w-24 h-24 sm:w-48 sm:h-48 bg-gradient-to-r from-pink-500/20 to-violet-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
       </div>
 
-      {/* Left side - Decorative content */}
-      <div className="flex-1 flex flex-col justify-center items-center p-12 relative z-10">
-        <div className="text-center max-w-lg">
-          <div className="mb-8">
-            <h1 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 mb-4 animate-pulse">
-              ⚡ SkillHub
-            </h1>
-            <p className="text-2xl text-cyan-100 mb-6">Where Knowledge Meets Opportunity</p>
-            <div className="w-32 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mx-auto animate-pulse"></div>
-          </div>
-          
-          <div className="space-y-6 text-cyan-200">
-            <div className="flex items-center justify-center space-x-4 opacity-80 hover:opacity-100 transition-opacity duration-300">
-              <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-lg">Connect with skill masters worldwide</span>
+      {/* Mobile-First Layout */}
+      <div className="flex-1 flex flex-col lg:flex-row relative z-10 overflow-y-auto">
+        
+        {/* Header Section - Mobile Only */}
+        <div className="lg:hidden text-center p-4 sm:p-6">
+          <h1 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 mb-2 animate-pulse">
+            ⚡ SkillHub
+          </h1>
+          <p className="text-lg sm:text-xl text-cyan-100 mb-2">Where Knowledge Meets Opportunity</p>
+          <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mx-auto"></div>
+        </div>
+
+        {/* Left side - Decorative content (Desktop Only) */}
+        <div className="hidden lg:flex lg:flex-1 lg:flex-col lg:justify-center lg:items-center lg:p-12">
+          <div className="text-center max-w-lg">
+            <div className="mb-8">
+              <h1 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 mb-4 animate-pulse">
+                ⚡ SkillHub
+              </h1>
+              <p className="text-2xl text-cyan-100 mb-6">Where Knowledge Meets Opportunity</p>
+              <div className="w-32 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mx-auto animate-pulse"></div>
             </div>
-            <div className="flex items-center justify-center space-x-4 opacity-80 hover:opacity-100 transition-opacity duration-300">
-              <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
-              <span className="text-lg">Learn new skills from experts</span>
+            
+            <div className="space-y-6 text-cyan-200">
+              <div className="flex items-center justify-center space-x-4 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-lg">Connect with skill masters worldwide</span>
+              </div>
+              <div className="flex items-center justify-center space-x-4 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+                <span className="text-lg">Learn new skills from experts</span>
+              </div>
+              <div className="flex items-center justify-center space-x-4 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+                <span className="text-lg">Share your expertise and earn</span>
+              </div>
             </div>
-            <div className="flex items-center justify-center space-x-4 opacity-80 hover:opacity-100 transition-opacity duration-300">
-              <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-              <span className="text-lg">Share your expertise and earn</span>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Right side - Form */}
-      <div className="flex-1 flex items-center justify-center p-4 relative z-10">
-        <div className="w-full max-w-lg">
-          <div className="bg-gray-800/40 backdrop-blur-xl border border-cyan-500/30 rounded-2xl shadow-2xl shadow-cyan-500/20 p-6 relative overflow-hidden">
-            {/* Animated border glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl animate-pulse"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/5 to-transparent rounded-2xl animate-pulse" style={{animationDelay: '1s'}}></div>
-            
-            <div className="relative z-10">
-              <div className="text-center mb-4">
-                <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-300 mb-1">
-                  Join the Revolution
-                </h2>
-                <p className="text-cyan-100 text-sm">Create your account to start skill sharing</p>
-              </div>
-
-              {errors.general && (
-                <div className="mb-4 p-3 bg-red-900/50 border border-red-500/50 text-red-200 rounded-lg backdrop-blur-sm animate-shake text-sm">
-                  {errors.general}
-                </div>
-              )}
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="group">
-                    <label className="block text-cyan-200 text-xs font-medium mb-1">First Name *</label>
-                    <input 
-                      type="text" 
-                      name="first_name" 
-                      value={formData.first_name} 
-                      onChange={handleInputChange}
-                      className={`w-full px-3 py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm text-sm ${errors.first_name ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
-                      placeholder="First name"
-                      required
-                    />
-                    {errors.first_name && <p className="mt-1 text-xs text-red-300 animate-pulse">{errors.first_name}</p>}
-                  </div>
-                  <div className="group">
-                    <label className="block text-cyan-200 text-xs font-medium mb-1">Last Name *</label>
-                    <input 
-                      type="text" 
-                      name="last_name" 
-                      value={formData.last_name} 
-                      onChange={handleInputChange}
-                      className={`w-full px-3 py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm text-sm ${errors.last_name ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
-                      placeholder="Last name"
-                      required
-                    />
-                    {errors.last_name && <p className="mt-1 text-xs text-red-300 animate-pulse">{errors.last_name}</p>}
-                  </div>
+        {/* Form Section */}
+        <div className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-4">
+          <div className="w-full max-w-lg lg:max-w-xl">
+            <div className="bg-gray-800/40 backdrop-blur-xl border border-cyan-500/30 rounded-2xl shadow-2xl shadow-cyan-500/20 p-4 sm:p-6 relative overflow-hidden">
+              {/* Animated border glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl animate-pulse"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/5 to-transparent rounded-2xl animate-pulse" style={{animationDelay: '1s'}}></div>
+              
+              <div className="relative z-10">
+                <div className="text-center mb-4 sm:mb-6">
+                  <h2 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-300 mb-1">
+                    Join the Revolution
+                  </h2>
+                  <p className="text-cyan-100 text-xs sm:text-sm">Create your account to start skill sharing</p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="group">
-                    <label className="block text-cyan-200 text-xs font-medium mb-1 transition-colors duration-200">Username *</label>
-                    <input 
-                      type="text" 
-                      name="username" 
-                      value={formData.username} 
-                      onChange={handleInputChange}
-                      className={`w-full px-3 py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm transition-all duration-300 text-sm ${errors.username ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
-                      placeholder="Choose a unique username"
-                      required 
-                    />
-                    {errors.username && <p className="mt-1 text-xs text-red-300 animate-pulse">{errors.username}</p>}
+                {errors.general && (
+                  <div className="mb-4 p-3 bg-red-900/50 border border-red-500/50 text-red-200 rounded-lg backdrop-blur-sm animate-shake text-sm">
+                    {errors.general}
+                  </div>
+                )}
+
+                <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+                  {/* Mobile: Stack fields, Desktop: Grid layout */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    <div className="group">
+                      <label className="block text-cyan-200 text-xs font-medium mb-1">First Name *</label>
+                      <input 
+                        type="text" 
+                        name="first_name" 
+                        value={formData.first_name} 
+                        onChange={handleInputChange}
+                        className={`w-full px-3 py-3 sm:py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm text-sm touch-manipulation ${errors.first_name ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
+                        placeholder="First name"
+                        required
+                      />
+                      {errors.first_name && <p className="mt-1 text-xs text-red-300 animate-pulse">{errors.first_name}</p>}
+                    </div>
+                    <div className="group">
+                      <label className="block text-cyan-200 text-xs font-medium mb-1">Last Name *</label>
+                      <input 
+                        type="text" 
+                        name="last_name" 
+                        value={formData.last_name} 
+                        onChange={handleInputChange}
+                        className={`w-full px-3 py-3 sm:py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm text-sm touch-manipulation ${errors.last_name ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
+                        placeholder="Last name"
+                        required
+                      />
+                      {errors.last_name && <p className="mt-1 text-xs text-red-300 animate-pulse">{errors.last_name}</p>}
+                    </div>
                   </div>
 
-                  <div className="group">
-                    <label className="block text-cyan-200 text-xs font-medium mb-1 transition-colors duration-200">Email *</label>
-                    <input 
-                      type="email" 
-                      name="email" 
-                      value={formData.email} 
-                      onChange={handleInputChange}
-                      className={`w-full px-3 py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm transition-all duration-300 text-sm ${errors.email ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
-                      placeholder="Enter your email address"
-                      required 
-                    />
-                    {errors.email && <p className="mt-1 text-xs text-red-300 animate-pulse">{errors.email}</p>}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    <div className="group">
+                      <label className="block text-cyan-200 text-xs font-medium mb-1 transition-colors duration-200">Username *</label>
+                      <input 
+                        type="text" 
+                        name="username" 
+                        value={formData.username} 
+                        onChange={handleInputChange}
+                        className={`w-full px-3 py-3 sm:py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm transition-all duration-300 text-sm touch-manipulation ${errors.username ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
+                        placeholder="Choose a unique username"
+                        required 
+                      />
+                      {errors.username && <p className="mt-1 text-xs text-red-300 animate-pulse">{errors.username}</p>}
+                    </div>
+
+                    <div className="group">
+                      <label className="block text-cyan-200 text-xs font-medium mb-1 transition-colors duration-200">Email *</label>
+                      <input 
+                        type="email" 
+                        name="email" 
+                        value={formData.email} 
+                        onChange={handleInputChange}
+                        className={`w-full px-3 py-3 sm:py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm transition-all duration-300 text-sm touch-manipulation ${errors.email ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
+                        placeholder="Enter your email address"
+                        required 
+                      />
+                      {errors.email && <p className="mt-1 text-xs text-red-300 animate-pulse">{errors.email}</p>}
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div className="group">
                     <label className="block text-cyan-200 text-xs font-medium mb-1 group-hover:text-cyan-100 transition-colors duration-200">Phone Number *</label>
                     <input 
@@ -229,7 +243,7 @@ const Signup = () => {
                       name="phone" 
                       value={formData.phone} 
                       onChange={handleInputChange}
-                      className={`w-full px-3 py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm transition-all duration-300 hover:bg-gray-900/70 text-sm ${errors.phone ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30 hover:border-cyan-400/50'}`}
+                      className={`w-full px-3 py-3 sm:py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm transition-all duration-300 hover:bg-gray-900/70 text-sm touch-manipulation ${errors.phone ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30 hover:border-cyan-400/50'}`}
                       placeholder="Your phone number"
                       required 
                     />
@@ -242,7 +256,7 @@ const Signup = () => {
                       name="date_of_birth" 
                       value={formData.date_of_birth} 
                       onChange={handleInputChange}
-                      className={`w-full px-3 py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm transition-all duration-300 text-sm ${errors.date_of_birth ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
+                      className={`w-full px-3 py-3 sm:py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm transition-all duration-300 text-sm touch-manipulation ${errors.date_of_birth ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
                       required 
                     />
                     {errors.date_of_birth && <p className="mt-1 text-xs text-red-300 animate-pulse">{errors.date_of_birth}</p>}
@@ -255,8 +269,8 @@ const Signup = () => {
                     name="bio" 
                     value={formData.bio} 
                     onChange={handleInputChange}
-                    rows={2}
-                    className={`w-full px-3 py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm resize-none transition-all duration-300 text-sm ${errors.bio ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
+                    rows={3}
+                    className={`w-full px-3 py-3 sm:py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm resize-none transition-all duration-300 text-sm touch-manipulation ${errors.bio ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
                     placeholder="Tell us about yourself and your skills..."
                     required 
                   />
@@ -270,13 +284,13 @@ const Signup = () => {
                     name="location" 
                     value={formData.location} 
                     onChange={handleInputChange}
-                    className={`w-full px-3 py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm transition-all duration-300 text-sm ${errors.location ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
+                    className={`w-full px-3 py-3 sm:py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm transition-all duration-300 text-sm touch-manipulation ${errors.location ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
                     placeholder="Your location (optional)"
                   />
                   {errors.location && <p className="mt-1 text-xs text-red-300 animate-pulse">{errors.location}</p>}
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div className="group">
                     <label className="block text-cyan-200 text-xs font-medium mb-1 transition-colors duration-200">Password *</label>
                     <input 
@@ -284,7 +298,7 @@ const Signup = () => {
                       name="password" 
                       value={formData.password} 
                       onChange={handleInputChange}
-                      className={`w-full px-3 py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm transition-all duration-300 text-sm ${errors.password ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
+                      className={`w-full px-3 py-3 sm:py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm transition-all duration-300 text-sm touch-manipulation ${errors.password ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
                       placeholder="Create password"
                       required 
                     />
@@ -297,7 +311,7 @@ const Signup = () => {
                       name="password_confirm" 
                       value={formData.password_confirm} 
                       onChange={handleInputChange}
-                      className={`w-full px-3 py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm transition-all duration-300 text-sm ${errors.password_confirm ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
+                      className={`w-full px-3 py-3 sm:py-2 bg-gray-900/50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-cyan-100 placeholder-cyan-300/60 backdrop-blur-sm transition-all duration-300 text-sm touch-manipulation ${errors.password_confirm ? 'border-red-500/50 animate-pulse' : 'border-cyan-400/30'}`}
                       placeholder="Confirm password"
                     />
                     {errors.password_confirm && <p className="mt-1 text-xs text-red-300 animate-pulse">{errors.password_confirm}</p>}
@@ -307,7 +321,7 @@ const Signup = () => {
                 <button 
                   type="submit" 
                   disabled={loading}
-                  className="w-full bg-gradient-to-r from-purple-500 to-pink-600 disabled:from-gray-600 disabled:to-gray-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-purple-500/30 border border-purple-400/50 text-sm"
+                  className="w-full bg-gradient-to-r from-purple-500 to-pink-600 disabled:from-gray-600 disabled:to-gray-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-purple-500/30 border border-purple-400/50 text-sm touch-manipulation"
                 >
                   {loading ? (
                     <div className="flex items-center justify-center">
@@ -326,9 +340,9 @@ const Signup = () => {
               </form>
 
               <div className="mt-4 text-center">
-                <p className="text-cyan-200 text-sm">
+                <p className="text-cyan-200 text-xs sm:text-sm">
                   Already have an account?{' '}
-                  <Link to="/login" className="text-purple-300 font-medium transition-colors duration-300">
+                  <Link to="/login" className="text-purple-300 font-medium transition-colors duration-300 hover:text-purple-200">
                     Log In
                   </Link>
                 </p>

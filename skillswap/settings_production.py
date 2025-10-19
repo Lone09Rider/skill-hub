@@ -23,7 +23,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'channels',
     'corsheaders',
     'core',
 ]
@@ -59,7 +58,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'skillswap.wsgi.application'
-ASGI_APPLICATION = 'skillswap.asgi.application'
 
 # Database
 DATABASE_URL = env('DATABASE_URL', default=None)
@@ -68,14 +66,11 @@ if DATABASE_URL:
         'default': dj_database_url.parse(DATABASE_URL)
     }
 else:
+    # Use SQLite for production as well
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': env('MYSQL_DATABASE', default='skillswap'),
-            'USER': env('MYSQL_USER', default='root'),
-            'PASSWORD': env('MYSQL_PASSWORD', default=''),
-            'HOST': env('MYSQL_HOST', default='localhost'),
-            'PORT': env('MYSQL_PORT', default='3306'),
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
 
@@ -111,16 +106,6 @@ CORS_ALLOWED_ORIGINS = [
 
 # In production, add your Netlify domain here
 CORS_ALLOW_CREDENTIALS = True
-
-# Channels
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [env('REDIS_URL', default='redis://redis:6379/0')],
-        },
-    },
-}
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'

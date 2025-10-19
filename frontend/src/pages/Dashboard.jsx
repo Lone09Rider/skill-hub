@@ -332,70 +332,74 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-slate-800 via-purple-800 to-indigo-800 relative flex flex-col">
-      {/* Tech grid background */}
+    <div className="min-h-screen w-screen bg-gradient-to-br from-slate-800 via-purple-800 to-indigo-800 relative flex flex-col">
+      {/* Tech grid background - responsive */}
       <div className="absolute inset-0 opacity-15">
-        <div className="grid grid-cols-12 h-full">
+        <div className="grid grid-cols-8 sm:grid-cols-12 lg:grid-cols-16 h-full">
           {Array.from({length: 144}).map((_, i) => (
             <div key={i} className="border border-cyan-400/25"></div>
           ))}
         </div>
       </div>
       
-      {/* Floating particles */}
+      {/* Floating particles - responsive sizes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="animate-pulse absolute top-1/4 left-1/4 w-2 h-2 bg-cyan-400 rounded-full"></div>
-        <div className="animate-pulse absolute top-3/4 right-1/4 w-1 h-1 bg-purple-400 rounded-full" style={{animationDelay: '1s'}}></div>
-        <div className="animate-pulse absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-pink-400 rounded-full" style={{animationDelay: '2s'}}></div>
+        <div className="animate-pulse absolute top-1/4 left-1/4 w-1 h-1 sm:w-2 sm:h-2 bg-cyan-400 rounded-full"></div>
+        <div className="animate-pulse absolute top-3/4 right-1/4 w-0.5 h-0.5 sm:w-1 sm:h-1 bg-purple-400 rounded-full" style={{animationDelay: '1s'}}></div>
+        <div className="animate-pulse absolute bottom-1/4 left-1/3 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-pink-400 rounded-full" style={{animationDelay: '2s'}}></div>
       </div>
 
       <Header currentPage="dashboard" />
 
       {/* Main Content */}
       <main className="flex-1 overflow-auto relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           {/* Dashboard Header */}
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-300 mb-2">
+          <div className="mb-4 sm:mb-6 lg:mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-300 mb-2">
               Your Dashboard
             </h2>
-            <p className="text-cyan-100">Manage your skill exchange applications and opportunities</p>
+            <p className="text-sm sm:text-base text-cyan-100">Manage your skill exchange applications and opportunities</p>
           </div>
 
-          {/* Tab Navigation */}
-          <div className="bg-gray-800/70 backdrop-blur-sm border border-cyan-500/30 rounded-xl shadow-2xl shadow-cyan-500/20 mb-6 relative overflow-hidden">
+          {/* Tab Navigation - Mobile responsive */}
+          <div className="bg-gray-800/70 backdrop-blur-sm border border-cyan-500/30 rounded-xl shadow-2xl shadow-cyan-500/20 mb-4 sm:mb-6 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 rounded-xl"></div>
-            <div className="relative z-10 p-6">
-              <div className="flex space-x-4 mb-6">
+            <div className="relative z-10 p-4 sm:p-6">
+              {/* Mobile: Stack buttons, Desktop: Row layout */}
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-4 sm:mb-6">
                 <button
                   onClick={() => setActiveTab('received')}
-                  className={`px-6 py-3 rounded-lg font-medium transition duration-300 ${
+                  className={`flex-1 px-4 sm:px-6 py-3 rounded-lg font-medium text-sm sm:text-base transition duration-300 ${
                     activeTab === 'received'
                       ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30 border border-cyan-400/50'
                       : 'bg-gray-700/50 text-cyan-300 hover:bg-gray-600/50 border border-gray-600/50'
                   }`}
                 >
-                  Applications Received ({applications.received.length})
+                  <span className="hidden sm:inline">Applications Received ({applications.received.length})</span>
+                  <span className="sm:hidden">Received ({applications.received.length})</span>
                 </button>
                 <button
                   onClick={() => setActiveTab('sent')}
-                  className={`px-6 py-3 rounded-lg font-medium transition duration-300 ${
+                  className={`flex-1 px-4 sm:px-6 py-3 rounded-lg font-medium text-sm sm:text-base transition duration-300 ${
                     activeTab === 'sent'
                       ? 'bg-gradient-to-r from-purple-500 to-pink-600 text-white shadow-lg shadow-purple-500/30 border border-purple-400/50'
                       : 'bg-gray-700/50 text-cyan-300 hover:bg-gray-600/50 border border-gray-600/50'
                   }`}
                 >
-                  Applications Sent ({applications.sent.length})
+                  <span className="hidden sm:inline">Applications Sent ({applications.sent.length})</span>
+                  <span className="sm:hidden">Sent ({applications.sent.length})</span>
                 </button>
                 <button
                   onClick={() => setActiveTab('mySkills')}
-                  className={`px-6 py-3 rounded-lg font-medium transition duration-300 ${
+                  className={`flex-1 px-4 sm:px-6 py-3 rounded-lg font-medium text-sm sm:text-base transition duration-300 ${
                     activeTab === 'mySkills'
                       ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/30 border border-green-400/50'
                       : 'bg-gray-700/50 text-cyan-300 hover:bg-gray-600/50 border border-gray-600/50'
                   }`}
                 >
-                  My Skills
+                  <span className="hidden sm:inline">My Skills</span>
+                  <span className="sm:hidden">Skills</span>
                 </button>
               </div>
 
