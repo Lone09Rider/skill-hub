@@ -102,10 +102,15 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://swap-skills-io.netlify.app",
 ]
 
-# In production, add your Netlify domain here
 CORS_ALLOW_CREDENTIALS = True
+
+# CSRF Settings (although CSRF middleware is disabled)
+CSRF_TRUSTED_ORIGINS = [
+    "https://swap-skills-io.netlify.app",
+]
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
