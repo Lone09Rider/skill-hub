@@ -104,7 +104,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
     # Production deployments
     "https://skill-hub-learn.netlify.app",  # Netlify frontend
-    "https://skill-hub-1.onrender.com",     # Render backend
+    "https://skill-hub-ofsi.onrender.com",  # Render backend (updated)
 ]
 CORS_ALLOW_CREDENTIALS = True
 
