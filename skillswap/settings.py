@@ -103,7 +103,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Vite dev server
     "http://127.0.0.1:5173",
     # Production deployments
-    "https://skill-hub-learn.netlify.app",  # Netlify frontend
+    "https://skill-hub-learn.netlify.app",  # Netlify frontend (old)
+    "https://swap-skills-io.netlify.app",   # Netlify frontend (new)
     "https://skill-hub-ofsi.onrender.com",  # Render backend (updated)
 ]
 CORS_ALLOW_CREDENTIALS = True
