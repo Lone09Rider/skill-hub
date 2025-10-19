@@ -109,6 +109,13 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CORS_ALLOW_CREDENTIALS = True
 
+# CSRF Configuration for production
+CSRF_TRUSTED_ORIGINS = [
+    "https://swap-skills-io.netlify.app",
+    "https://skill-hub-learn.netlify.app",
+    "https://skill-hub-ofsi.onrender.com",
+]
+
 # Login/Logout redirect URLs
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
